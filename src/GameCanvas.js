@@ -25,11 +25,11 @@ const GameCanvas = () => {
   }, []);
 
   useEffect(() => {
-    if (player1Score === 2) {
+    if (player1Score === 5) {
       setWinner('PLAYER1');
       gameOver();
     }
-    if (player2Score === 2) {
+    if (player2Score === 5) {
       setWinner('PLAYER2');
       gameOver();
     }
@@ -114,7 +114,6 @@ const GameCanvas = () => {
         paddle1Y -= paddleSpeed;
       }
     };
-
     setInterval(function () {
       if (isGameOver === false) {
         moveAll();
@@ -123,6 +122,7 @@ const GameCanvas = () => {
         gameOver();
       }
     }, 1000 / fps);
+    gameOver();
   };
 
   // reset all element
@@ -184,12 +184,7 @@ const GameCanvas = () => {
     let ctx = canvas.current.getContext('2d');
     ctx.textAlign = 'center';
     if (winner !== '') {
-      ctx.fillStyle = '#888';
-      ctx.font = '36px Orbitron';
-      ctx.fillText(winner + ' WON!', gameWidth / 2, 150);
     } else {
-      ballY = gameHeight / 2;
-      ballX = gameWidth / 2;
       isGameOver = true;
     }
     ctx.font = '14px Roboto Mono';
